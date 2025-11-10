@@ -26,7 +26,6 @@ const languageMenu = document.getElementById('language-menu');
 const languageControls = document.querySelector('.language-controls');
 const languageButtons = Array.from(languageMenu?.querySelectorAll('.language-option') ?? []);
 const burgerLines = Array.from(document.querySelectorAll('.language-toggle .burger-line'));
-const languageLabel = document.querySelector('.language-label');
 
 const API_ENDPOINT = '/api/translate';
 
@@ -392,10 +391,6 @@ const applyLocale = locale => {
   burgerLines.forEach(line => {
     line.dataset.label = indicatorLabel;
   });
-  if (languageLabel) {
-    languageLabel.dataset.label = indicatorLabel;
-    languageLabel.textContent = indicatorLabel;
-  }
 
   updateTargetOptions();
 
