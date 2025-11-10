@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Traislate — AI audio translation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+    <main class="shell">
+      <header class="hero">
+        <div class="hero-top">
+          <div class="brand" aria-label="Traislate">
+            <span class="brand-logo" aria-hidden="true">
+              <span class="brand-record" aria-hidden="true">
+                <span class="record-core"></span>
+              </span>
+            </span>
+            <div class="brand-copy">
+              <span class="brand-name">Traislate</span>
+              <span class="brand-tagline" id="brand-tagline">ambient voice translator</span>
+            </div>
+          </div>
+
+          <div class="language-controls">
+            <button
+              class="language-toggle"
+              id="language-toggle"
+              type="button"
+              aria-label="Change language"
+              aria-expanded="false"
+              aria-controls="language-menu"
+            >
+              <span class="burger-line" data-label="LANG"></span>
+              <span class="burger-line" data-label="LANG"></span>
+              <span class="burger-line" data-label="LANG"></span>
+              <span class="language-label" data-label="LANG">LANG</span>
+            </button>
+            <div class="language-menu" id="language-menu" hidden role="menu">
+              <button class="language-option" type="button" data-locale="en" role="menuitem">
+                English
+              </button>
+              <button class="language-option" type="button" data-locale="de" role="menuitem">
+                Deutsch
+              </button>
+              <button class="language-option" type="button" data-locale="pl" role="menuitem">
+                Polski
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <h1 id="hero-title">Upload audio from your phone or watch and get instant translations</h1>
+        <p id="hero-copy">
+          Thanks to ChatGPT integration your recordings are automatically detected and translated into the language you choose.
+          Crafted for mobile, polished for desktop.
+        </p>
+      </header>
+
+      <section class="card">
+        <form id="translation-form" class="form" novalidate>
+          <div class="form-row">
+            <label class="input-label" for="target-language" id="target-label">Target language</label>
+            <div class="select-wrap">
+              <select id="target-language" name="target-language" required>
+                <option value="en" selected>English</option>
+                <option value="de">German</option>
+                <option value="pl">Polish</option>
+              </select>
+              <span class="select-caret" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="input-label" id="audio-label">Audio file</label>
+            <label class="dropzone" for="audio-file">
+              <input
+                id="audio-file"
+                name="audio-file"
+                type="file"
+                accept="audio/*"
+                capture="microphone"
+              />
+              <div class="dropzone-icon" aria-hidden="true">⬆️</div>
+              <p class="dropzone-title" id="dropzone-title">Drop a file or tap to browse</p>
+              <p class="dropzone-subtitle" id="dropzone-subtitle">
+                Works with phone and watch recordings (Apple Watch, WearOS). Max 60 MB.
+              </p>
+              <p id="file-feedback" class="dropzone-feedback" role="status"></p>
+            </label>
+          </div>
+
+          <div class="form-row actions">
+            <button type="submit" class="primary" data-state="idle">
+              <span class="button-label" id="translate-button-label">Translate recording</span>
+              <span class="button-spinner" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="reset-button" class="ghost">Clear</button>
+          </div>
+          <p id="form-status" class="status" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="result-section" class="card result-card" hidden>
+        <header class="result-header">
+          <span class="result-pill" id="result-pill">Translation result</span>
+          <p id="detected-language">Detected language: —</p>
+        </header>
+        <article id="translation-output" class="result-content">
+          <p id="translation-placeholder">Your translation will appear here.</p>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <div>
+          <strong id="footer-heading">How it works?</strong>
+          <p id="footer-copy">
+            Your audio file is sent to your ChatGPT integration. The model detects the source language,
+            transcribes the speech, and translates it into the selected language. Traislate keeps up with you on the go—from phone to wearable.
+          </p>
+        </div>
+      </footer>
+    </main>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
